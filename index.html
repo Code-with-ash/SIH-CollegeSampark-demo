@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,23 +24,24 @@
 
         .chat-container {
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
             height: 700px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.97);
             border-radius: 25px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            border: 2px solid rgba(79, 172, 254, 0.2);
             animation: slideUp 0.8s ease-out;
         }
 
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -48,121 +50,136 @@
 
         .chat-header {
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            padding: 25px;
+            padding: 22px;
             color: white;
             text-align: center;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             position: relative;
         }
 
         .chat-header h1 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-size: 22px;
+            margin-bottom: 5px;
         }
 
         .chat-header p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .status-indicator {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 12px;
-            height: 12px;
-            background: #4ade80;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            font-size: 13px;
+            opacity: 0.85;
         }
 
         .chat-messages {
             flex: 1;
-            padding: 20px;
+            padding: 18px;
             overflow-y: auto;
-            background: #f8fafc;
+            background: #f9fafb;
         }
 
         .message {
-            margin-bottom: 20px;
-            animation: fadeInUp 0.5s ease-out;
+            margin-bottom: 18px;
+            animation: fadeInUp 0.4s ease-out;
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        .message.user {
-            text-align: right;
-        }
-
-        .message.bot {
-            text-align: left;
-        }
-
         .message-bubble {
             display: inline-block;
             max-width: 80%;
-            padding: 15px 20px;
+            padding: 14px 18px;
             border-radius: 20px;
             font-size: 15px;
             line-height: 1.4;
-            position: relative;
+        }
+
+        .message.user {
+            text-align: right;
         }
 
         .message.user .message-bubble {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            border-bottom-right-radius: 8px;
+            border-bottom-right-radius: 6px;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
         }
 
         .message.bot .message-bubble {
             background: white;
             color: #374151;
-            border-bottom-left-radius: 8px;
+            border-bottom-left-radius: 6px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-input-container {
+            padding: 16px;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 13px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 15px;
+            resize: none;
+            outline: none;
+            max-height: 120px;
+            min-height: 45px;
+            transition: 0.2s ease;
+        }
+
+        .chat-input:focus {
+            border-color: #4facfe;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+        }
+
+        .send-button {
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: 0.2s ease;
+        }
+
+        .send-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
         }
 
         .loader {
             display: none;
-            text-align: left;
-            margin-bottom: 20px;
-        }
-
-        .loader .message-bubble {
-            background: white;
-            color: #374151;
-            border-bottom-left-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            margin-bottom: 15px;
         }
 
         .typing-indicator {
             display: flex;
             align-items: center;
-            gap: 8px;
-        }
-
-        .typing-text {
-            font-size: 14px;
-            color: #6b7280;
-        }
-
-        .dots {
-            display: flex;
-            gap: 4px;
+            gap: 6px;
         }
 
         .dot {
@@ -173,500 +190,210 @@
             animation: bounce 1.4s infinite ease-in-out;
         }
 
-        .dot:nth-child(1) { animation-delay: -0.32s; }
-        .dot:nth-child(2) { animation-delay: -0.16s; }
+        .dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
 
         @keyframes bounce {
-            0%, 80%, 100% {
+
+            0%,
+            80%,
+            100% {
                 transform: scale(0.8);
                 opacity: 0.5;
             }
+
             40% {
                 transform: scale(1);
                 opacity: 1;
             }
         }
-
-        .chat-input-container {
-            padding: 20px;
-            background: white;
-            border-top: 1px solid #e5e7eb;
-        }
-
-        .chat-input-wrapper {
-            display: flex;
-            gap: 12px;
-            align-items: flex-end;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 15px 20px;
-            border: 2px solid #e5e7eb;
-            border-radius: 25px;
-            font-size: 15px;
-            outline: none;
-            transition: all 0.3s ease;
-            resize: none;
-            max-height: 120px;
-            min-height: 50px;
-        }
-
-        .chat-input:focus {
-            border-color: #4facfe;
-            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
-        }
-
-        .send-button {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-        }
-
-        .send-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(79, 172, 254, 0.3);
-        }
-
-        .send-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .quick-suggestions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
-        }
-
-        .suggestion-btn {
-            background: rgba(79, 172, 254, 0.1);
-            border: 1px solid rgba(79, 172, 254, 0.2);
-            color: #4facfe;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .suggestion-btn:hover {
-            background: rgba(79, 172, 254, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .welcome-message {
-            text-align: center;
-            color: #6b7280;
-            margin: 40px 0;
-            font-size: 16px;
-        }
-
-        .welcome-message h3 {
-            color: #374151;
-            margin-bottom: 8px;
-        }
-
-        @media (max-width: 600px) {
-            .chat-container {
-                height: 100vh;
-                border-radius: 0;
-                max-width: none;
-            }
-        }
     </style>
 </head>
+
 <body>
     <div class="chat-container">
         <div class="chat-header">
-            <div class="status-indicator"></div>
             <h1>College Sampark</h1>
-            <p>Smart Campus Assistant</p>
+            <p>AI-Powered Smart Campus Assistant</p>
         </div>
-        
+
         <div class="chat-messages" id="chatMessages">
-            <div class="welcome-message">
-                <h3>👋 স্বাগতম! Welcome!</h3>
-                <p>Ask me anything about college schedules, timings, exams, and more!</p>
-            </div>
-        </div>
-        
-        <div class="loader" id="loader">
-            <div class="message-bubble">
-                <div class="typing-indicator">
-                    <span class="typing-text">College Sampark is typing</span>
-                    <div class="dots">
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
+            <div class="message bot">
+                <div class="message-bubble">
+                    👋 Hi! I’m your college assistant. Ask me about exam dates, library hours, hostel info, attendance,
+                    fees – I’ll reply fast!
                 </div>
             </div>
         </div>
-        
-        <div class="chat-input-container">
-            <div class="quick-suggestions">
-                <button class="suggestion-btn" onclick="sendMessage('Exam kab hai?')">📚 Exam Dates</button>
-                <button class="suggestion-btn" onclick="sendMessage('Library kab khulti hai?')">📖 Library Hours</button>
-                <button class="suggestion-btn" onclick="sendMessage('Hostel fees')">🏠 Hostel Info</button>
-                <button class="suggestion-btn" onclick="sendMessage('Fees kab tak bharna hai?')">💳 Fee Payment</button>
-                <button class="suggestion-btn" onclick="sendMessage('Attendance kaise check kare?')">📊 Attendance</button>
+
+        <div class="loader" id="loader">
+            <div class="message-bubble">
+                <div class="typing-indicator">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
             </div>
+        </div>
+
+        <div class="chat-input-container">
             <div class="chat-input-wrapper">
-                <textarea class="chat-input" id="chatInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)"></textarea>
-                <button class="send-button" id="sendButton" onclick="sendMessageFromInput()">
-                    ➤
-                </button>
+                <textarea class="chat-input" id="chatInput" placeholder="Type your question..."
+                    onkeypress="handleKeyPress(event)"></textarea>
+                <button class="send-button" id="sendButton" onclick="sendMessageFromInput()">➤</button>
             </div>
         </div>
     </div>
 
-    <script>
-        const responses = {
-            // Original questions with Hinglish variations
-            'exams kbse hain?': 'Exams 29 September se hain! 📅 Best of luck for your preparation!',
-            'exams kbse hain': 'Exams 29 September se hain! 📅 Best of luck for your preparation!',
-            'exam kab hai': 'Exams 29 September se hain! 📅 Best of luck for your preparation!',
-            'exam dates': 'Exams 29 September se hain! 📅 Best of luck for your preparation!',
-            'exam kab se start hai': 'Exams 29 September se hain! 📅 Best of luck for your preparation!',
-            'pariksha kab hai': 'Exams 29 September se hain! 📅 Best of luck for your preparation!',
-            
-            'college timing kya hai?': 'Our college timing is 9:30 AM to 5:00 PM 🕤 Monday to Friday.',
-            'college timing kya hai': 'Our college timing is 9:30 AM to 5:00 PM 🕤 Monday to Friday.',
-            'whats the timing of our college': 'Our college timing is 9:30 AM to 5:00 PM 🕤 Monday to Friday.',
-            'college time': 'Our college timing is 9:30 AM to 5:00 PM 🕤 Monday to Friday.',
-            'timing': 'Our college timing is 9:30 AM to 5:00 PM 🕤 Monday to Friday.',
-            'college ka time kya hai': 'Our college timing is 9:30 AM to 5:00 PM 🕤 Monday to Friday.',
-            'college kitne baje se hai': 'Our college timing is 9:30 AM to 5:00 PM 🕤 Monday to Friday.',
-            'college timing batao': 'Our college timing is 9:30 AM to 5:00 PM 🕤 Monday to Friday.',
-            'college kab khulta hai': 'Our college timing is 9:30 AM to 5:00 PM 🕤 Monday to Friday.',
-            
-            'কলেজ কখন খোলে?': 'আমাদের কলেজ সকাল ৯:৩০ টা থেকে বিকেল ৫ টা পর্যন্ত খোলা থাকে! 🏫',
-            'কলেজ কখন খোলে': 'আমাদের কলেজ সকাল ৯:৩০ টা থেকে বিকেল ৫ টা পর্যন্ত খোলা থাকে! 🏫',
-            'কলেজের সময়': 'আমাদের কলেজ সকাল ৯:৩০ টা থেকে বিকেল ৫ টা পর্যন্ত খোলা থাকে! 🏫',
-            
-            'পরীক্ষা কবে?': 'পরীক্ষা ২৯ সেপ্টেম্বর থেকে শুরু! 📚 ভালো প্রস্তুতি নিয়ে রাখুন।',
-            'পরীক্ষা কখন': 'পরীক্ষা ২৯ সেপ্টেম্বর থেকে শুরু! 📚 ভালো প্রস্তুতি নিয়ে রাখুন।',
-            
-            // Academic Calendar & Semester (with Hinglish)
-            'what is the academic calendar for this semester': 'The academic calendar runs from January to May for the even semester and July to December for the odd semester. 📅',
-            'academic calendar': 'The academic calendar runs from January to May for the even semester and July to December for the odd semester. 📅',
-            'academic calendar kya hai': 'The academic calendar runs from January to May for the even semester and July to December for the odd semester. 📅',
-            'semester ka calendar batao': 'The academic calendar runs from January to May for the even semester and July to December for the odd semester. 📅',
-            'when does the semester start and end': 'The semester typically starts in the first week of January/July and ends by May/December. 📚',
-            'semester start': 'The semester typically starts in the first week of January/July and ends by May/December. 📚',
-            'semester end': 'The semester typically starts in the first week of January/July and ends by May/December. 📚',
-            'semester kab start hota hai': 'The semester typically starts in the first week of January/July and ends by May/December. 📚',
-            'semester kab end hota hai': 'The semester typically starts in the first week of January/July and ends by May/December. 📚',
-            
-            // Exams (with Hinglish)
-            'when are mid-term exams scheduled': 'Mid-term exams are usually conducted around the 8th week of the semester. 📝',
-            'mid term exam': 'Mid-term exams are usually conducted around the 8th week of the semester. 📝',
-            'midterm exam': 'Mid-term exams are usually conducted around the 8th week of the semester. 📝',
-            'mid term kab hai': 'Mid-term exams are usually conducted around the 8th week of the semester. 📝',
-            'internal exam kab hai': 'Mid-term exams are usually conducted around the 8th week of the semester. 📝',
-            'when is the final exam week': 'Final exams are conducted in the last two weeks of the semester. 📋',
-            'final exam': 'Final exams are conducted in the last two weeks of the semester. 📋',
-            'final exam kab hai': 'Final exams are conducted in the last two weeks of the semester. 📋',
-            'end sem exam kab hai': 'Final exams are conducted in the last two weeks of the semester. 📋',
-            'what is the end sem exam centre': 'The end semester exam centre is HMR COLLEGE BAKOLI VILLAGE 🏢',
-            'exam centre': 'The end semester exam centre is HMR COLLEGE BAKOLI VILLAGE 🏢',
-            'end sem exam centre': 'The end semester exam centre is HMR COLLEGE BAKOLI VILLAGE 🏢',
-            'exam centre kaha hai': 'The end semester exam centre is HMR COLLEGE BAKOLI VILLAGE 🏢',
-            'exam kaha hoga': 'The end semester exam centre is HMR COLLEGE BAKOLI VILLAGE 🏢',
-            
-            // Timetable (with Hinglish)
-            'where can i find the class timetable for my branch/semester': 'Class timetables are available on the college website under the Academics section. 🗓️',
-            'timetable': 'Class timetables are available on the college website under the Academics section. 🗓️',
-            'class timetable': 'Class timetables are available on the college website under the Academics section. 🗓️',
-            'timetable kaha milega': 'Class timetables are available on the college website under the Academics section. 🗓️',
-            'class ka timetable': 'Class timetables are available on the college website under the Academics section. 🗓️',
-            'schedule': 'Class timetables are available on the college website under the Academics section. 🗓️',
-            'how can i download my timetable online': 'Timetables can be downloaded as PDF from the student portal after login. 💻',
-            'download timetable': 'Timetables can be downloaded as PDF from the student portal after login. 💻',
-            'timetable kaise download kare': 'Timetables can be downloaded as PDF from the student portal after login. 💻',
-            'timetable download karna hai': 'Timetables can be downloaded as PDF from the student portal after login. 💻',
-            
-            // Fees (with Hinglish)
-            'what is the last date to pay tuition fees': 'The last date to pay tuition fees is usually within the first month of the semester. 💳',
-            'fees last date': 'The last date to pay tuition fees is usually within the first month of the semester. 💳',
-            'tuition fees': 'The last date to pay tuition fees is usually within the first month of the semester. 💳',
-            'fees kab tak bharna hai': 'The last date to pay tuition fees is usually within the first month of the semester. 💳',
-            'fees ka last date': 'The last date to pay tuition fees is usually within the first month of the semester. 💳',
-            'fee payment kab tak': 'The last date to pay tuition fees is usually within the first month of the semester. 💳',
-            'can i pay fees after the due date': 'Yes, fees can be paid after the due date with a late fine of 100-500 INR depending on the delay. ⚠️',
-            'late fees': 'Yes, fees can be paid after the due date with a late fine of 100-500 INR depending on the delay. ⚠️',
-            'fees late bharne pe kya hoga': 'Yes, fees can be paid after the due date with a late fine of 100-500 INR depending on the delay. ⚠️',
-            'late fee kitna lagta hai': 'Yes, fees can be paid after the due date with a late fine of 100-500 INR depending on the delay. ⚠️',
-            'what are the accepted payment modes': 'Accepted modes include online banking, UPI, debit/credit card, and cash at the accounts office. 💰',
-            'payment modes': 'Accepted modes include online banking, UPI, debit/credit card, and cash at the accounts office. 💰',
-            'fees kaise pay kare': 'Accepted modes include online banking, UPI, debit/credit card, and cash at the accounts office. 💰',
-            'payment kaise kare': 'Accepted modes include online banking, UPI, debit/credit card, and cash at the accounts office. 💰',
-            'upi se fees pay kar sakte hai': 'Accepted modes include online banking, UPI, debit/credit card, and cash at the accounts office. 💰',
-            'how do i pay my hostel/mess fees': 'Hostel and mess fees can be paid online through the hostel management portal or at the accounts office. 🏠',
-            'hostel fees': 'Hostel and mess fees can be paid online through the hostel management portal or at the accounts office. 🏠',
-            'how to download the fee receipt': 'Fee receipts can be downloaded from the student portal under "Payments" section. 🧾',
-            'fee receipt': 'Fee receipts can be downloaded from the student portal under "Payments" section. 🧾',
-            'is there an installment option for fees': 'Yes, installment options are available upon approval from the accounts department. 📊',
-            'installment fees': 'Yes, installment options are available upon approval from the accounts department. 📊',
-            'who to contact if payment fails online': 'In case of failed transactions, contact the accounts office or email finance@college.edu. 📧',
-            'payment failed': 'In case of failed transactions, contact the accounts office or email finance@college.edu. 📧',
-            
-            // Exam Forms & Results
-            'when will exam form filling open': 'Exam form filling usually opens 4-6 weeks before final exams. 📝',
-            'exam form': 'Exam form filling usually opens 4-6 weeks before final exams. 📝',
-            'what is the last date for exam form submission': 'The last date is generally 2-3 weeks before exams start. ⏰',
-            'exam form last date': 'The last date is generally 2-3 weeks before exams start. ⏰',
-            'where do i download the admit card': 'Admit cards can be downloaded from the exam portal once forms are submitted. 🎫',
-            'admit card': 'Admit cards can be downloaded from the exam portal once forms are submitted. 🎫',
-            'hall ticket': 'Admit cards can be downloaded from the exam portal once forms are submitted. 🎫',
-            'when are the exam results announced': 'Results are announced within 30-45 days after the last exam. 📊',
-            'results': 'Results are announced within 30-45 days after the last exam. 📊',
-            'exam results': 'Results are announced within 30-45 days after the last exam. 📊',
-            'where to check results online': 'Results are published on the official results portal of the college/university. 🌐',
-            'check results': 'Results are published on the official results portal of the college/university. 🌐',
-            'what is the process for re-evaluation': 'Students can apply for re-evaluation by filling out the re-checking form and paying the prescribed fee. 📋',
-            're-evaluation': 'Students can apply for re-evaluation by filling out the re-checking form and paying the prescribed fee. 📋',
-            're-checking': 'Students can apply for re-evaluation by filling out the re-checking form and paying the prescribed fee. 📋',
-            
-            // Scholarships
-            'what scholarships are available for students': 'Merit-based, need-based, and government scholarships are available. 🎓',
-            'scholarships': 'Merit-based, need-based, and government scholarships are available. 🎓',
-            'how do i apply for a scholarship': 'Apply online through the National Scholarship Portal or the college scholarship cell. 💻',
-            'scholarship application': 'Apply online through the National Scholarship Portal or the college scholarship cell. 💻',
-            'when is the scholarship application deadline': 'Deadlines are typically in the first month of each academic year. ⏳',
-            'scholarship deadline': 'Deadlines are typically in the first month of each academic year. ⏳',
-            
-            // Certificates
-            'how can i get my bonafide certificate': 'Bonafide/character certificates can be requested from the admin office with a written application. 📄',
-            'bonafide certificate': 'Bonafide/character certificates can be requested from the admin office with a written application. 📄',
-            'character certificate': 'Bonafide/character certificates can be requested from the admin office with a written application. 📄',
-            'what is the process to get a transfer certificate': 'Submit a transfer certificate request form in the admin office with supporting documents. 📋',
-            'transfer certificate': 'Submit a transfer certificate request form in the admin office with supporting documents. 📋',
-            
-            // Attendance (with Hinglish)
-            'how can i check my attendance': 'Attendance can be checked on the student portal. 📊',
-            'attendance': 'Attendance can be checked on the student portal. 📊',
-            'check attendance': 'Attendance can be checked on the student portal. 📊',
-            'attendance kaise check kare': 'Attendance can be checked on the student portal. 📊',
-            'meri attendance kitni hai': 'Attendance can be checked on the student portal. 📊',
-            'attendance kaha dekhe': 'Attendance can be checked on the student portal. 📊',
-            'what is the minimum attendance requirement': 'Minimum attendance requirement is usually 75%. ⚠️',
-            'minimum attendance': 'Minimum attendance requirement is usually 75%. ⚠️',
-            'attendance kitni chahiye': 'Minimum attendance requirement is usually 75%. ⚠️',
-            'minimum attendance kitni honi chahiye': 'Minimum attendance requirement is usually 75%. ⚠️',
-            'what happens if my attendance is below 75': 'If attendance falls below 75%, you may not be allowed to sit for exams without special permission. 🚫',
-            'attendance below 75': 'If attendance falls below 75%, you may not be allowed to sit for exams without special permission. 🚫',
-            'attendance kam hai to kya hoga': 'If attendance falls below 75%, you may not be allowed to sit for exams without special permission. 🚫',
-            'attendance 75 se kam hai': 'If attendance falls below 75%, you may not be allowed to sit for exams without special permission. 🚫',
-            'where to check internal marks': 'Internal marks are uploaded by faculty and visible in the student portal. 📈',
-            'internal marks': 'Internal marks are uploaded by faculty and visible in the student portal. 📈',
-            
-            // Hostel (with Hinglish)
-            'how to apply for hostel accommodation': 'Apply online through the hostel portal or submit a form to the hostel office. 🏠',
-            'hostel accommodation': 'Apply online through the hostel portal or submit a form to the hostel office. 🏠',
-            'hostel application': 'Apply online through the hostel portal or submit a form to the hostel office. 🏠',
-            'hostel kaise milega': 'Apply online through the hostel portal or submit a form to the hostel office. 🏠',
-            'hostel ke liye apply kaise kare': 'Apply online through the hostel portal or submit a form to the hostel office. 🏠',
-            'hostel admission': 'Apply online through the hostel portal or submit a form to the hostel office. 🏠',
-            'what is the hostel fee': 'Hostel fee details are available on the hostel notice board and college website. 💰',
-            'hostel fees': 'Hostel and mess fees can be paid online through the hostel management portal or at the accounts office. 🏠',
-            'hostel fee kitna hai': 'Hostel fee details are available on the hostel notice board and college website. 💰',
-            'hostel ka paisa kitna lagta hai': 'Hostel fee details are available on the hostel notice board and college website. 💰',
-            'what is the mess menu': 'The weekly mess menu is posted on the hostel notice board and sent via email. 🍽️',
-            'mess menu': 'The weekly mess menu is posted on the hostel notice board and sent via email. 🍽️',
-            'mess mein kya khana milta hai': 'The weekly mess menu is posted on the hostel notice board and sent via email. 🍽️',
-            'khana ka menu': 'The weekly mess menu is posted on the hostel notice board and sent via email. 🍽️',
-            'what are hostel entry/exit timings': 'Hostel entry time is usually 9:30 PM, exit after 6:00 AM with warden approval. 🕘',
-            'hostel timings': 'Hostel entry time is usually 9:30 PM, exit after 6:00 AM with warden approval. 🕘',
-            'hostel ka time kya hai': 'Hostel entry time is usually 9:30 PM, exit after 6:00 AM with warden approval. 🕘',
-            'hostel ki entry timing': 'Hostel entry time is usually 9:30 PM, exit after 6:00 AM with warden approval. 🕘',
-            'who is the warden': 'The hostel warden\'s contact details are displayed on the hostel notice board. 👨‍💼',
-            'warden contact': 'The hostel warden\'s contact details are displayed on the hostel notice board. 👨‍💼',
-            
-            // Library (with Hinglish)
-            'what are the library opening hours': 'Library hours are typically 9:00 AM to 8:00 PM on working days. 📚',
-            'library hours': 'Library hours are typically 9:00 AM to 8:00 PM on working days. 📚',
-            'library timing': 'Library hours are typically 9:00 AM to 8:00 PM on working days. 📚',
-            'library kab khulti hai': 'Library hours are typically 9:00 AM to 8:00 PM on working days. 📚',
-            'library ka time': 'Library hours are typically 9:00 AM to 8:00 PM on working days. 📚',
-            'library kitne baje band hoti hai': 'Library hours are typically 9:00 AM to 8:00 PM on working days. 📚',
-            'how many books can i issue': 'You can issue up to 3 books at a time for 14 days. 📖',
-            'book issue': 'You can issue up to 3 books at a time for 14 days. 📖',
-            'kitni books le sakte hai': 'You can issue up to 3 books at a time for 14 days. 📖',
-            'book kitne din ke liye mil ti hai': 'You can issue up to 3 books at a time for 14 days. 📖',
-            'how to renew books': 'Books can be renewed online through the library portal before due date. 🔄',
-            'renew books': 'Books can be renewed online through the library portal before due date. 🔄',
-            'book renew kaise kare': 'Books can be renewed online through the library portal before due date. 🔄',
-            'what is the fine for late book return': 'Late return fines are charged at Rs. 5 per day per book. 💸',
-            'library fine': 'Late return fines are charged at Rs. 5 per day per book. 💸',
-            'book fine': 'Late return fines are charged at Rs. 5 per day per book. 💸',
-            'book late return karne pe fine': 'Late return fines are charged at Rs. 5 per day per book. 💸',
-            'library fine kitna hai': 'Late return fines are charged at Rs. 5 per day per book. 💸',
-            
-            // Faculty & Contacts
-            'how to contact my class coordinator': 'Contact your class coordinator by email (listed on the department webpage). 📧',
-            'class coordinator': 'Contact your class coordinator by email (listed on the department webpage). 📧',
-            'where can i find the faculty directory': 'The faculty directory is available on the college website under "Departments". 👥',
-            'faculty directory': 'The faculty directory is available on the college website under "Departments". 👥',
-            'who is the head of department': 'The Head of Department is listed on the department webpage with contact details. 👨‍🏫',
-            'hod': 'The Head of Department is listed on the department webpage with contact details. 👨‍🏫',
-            'what are the office working hours': 'The office working hours are 9:00 AM to 5:00 PM on weekdays. 🕘',
-            'office hours': 'The office working hours are 9:00 AM to 5:00 PM on weekdays. 🕘',
-            
-            // Services
-            'how to get an id card reissued': 'Apply for a duplicate ID card at the admin office with a small replacement fee. 🆔',
-            'id card reissue': 'Apply for a duplicate ID card at the admin office with a small replacement fee. 🆔',
-            'duplicate id card': 'Apply for a duplicate ID card at the admin office with a small replacement fee. 🆔',
-            'where is the placement office': 'The placement office is usually located near the Training & Placement Cell block. 🏢',
-            'placement office': 'The placement office is usually located near the Training & Placement Cell block. 🏢',
-            'what facilities are available for students with disabilities': 'Facilities like ramps, accessible washrooms, and special seating are available for students with disabilities. ♿',
-            'disability facilities': 'Facilities like ramps, accessible washrooms, and special seating are available for students with disabilities. ♿',
-            
-            // Emergency & Support
-            'medical emergency': 'Contact the medical room located near the main block or call the campus ambulance number. 🚑',
-            'medical emergency on campus': 'Contact the medical room located near the main block or call the campus ambulance number. 🚑',
-            'what is the anti-ragging helpline': 'Anti-ragging helpline: 1800-180-5522 (National) or campus-specific helpline. 📞',
-            'anti-ragging helpline': 'Anti-ragging helpline: 1800-180-5522 (National) or campus-specific helpline. 📞',
-            'how to report harassment': 'Report grievances via the online grievance redressal portal or to the Dean of Student Welfare. ⚖️',
-            'grievance': 'Report grievances via the online grievance redressal portal or to the Dean of Student Welfare. ⚖️',
-            'harassment': 'Report grievances via the online grievance redressal portal or to the Dean of Student Welfare. ⚖️',
-            'it issues': 'Contact IT support at ithelpdesk@college.edu or visit the IT office. 💻',
-            'login issues': 'Contact IT support at ithelpdesk@college.edu or visit the IT office. 💻',
-            'portal issues': 'Contact IT support at ithelpdesk@college.edu or visit the IT office. 💻',
-            'how to get noc for internships': 'Submit a request form signed by your HOD to get an internship NOC from admin office. 📋',
-            'internship noc': 'Submit a request form signed by your HOD to get an internship NOC from admin office. 📋',
-            'noc': 'Submit a request form signed by your HOD to get an internship NOC from admin office. 📋',
-            'lost and found': 'Report lost items to the security office and check the lost & found register. 🔍',
-            'lost items': 'Report lost items to the security office and check the lost & found register. 🔍',
-            
-            // Greetings (with Hinglish)
-            'hi': 'Hello! 👋 How can I help you with college information today?',
-            'hello': 'Hi there! 👋 Ask me anything about college schedules and information.',
-            'hey': 'Hey! 👋 College ke baare mein kuch puchna hai?',
-            'namaste': 'Namaste! 🙏 Main aapki college related queries mein help kar sakta hun.',
-            'kya haal hai': 'Sab badhiya! 😊 College ke baare mein kuch puchna hai?',
-            'help': 'I can help you with exam dates, college timings, library hours, fees deadlines, scholarships, hostel info, and much more! 😊',
-            'help karo': 'Main aapki help kar sakta hun exam dates, fees, library, hostel, attendance - sabke baare mein! 😊',
-            'madad chahiye': 'Haan bilkul! College ki koi bhi information chahiye, pooch sakte hai! 🤝',
-            'thanks': 'You\'re welcome! 😊 Feel free to ask if you need any more information.',
-            'thank you': 'Happy to help! 🌟 Is there anything else you\'d like to know?',
-            'dhanyawad': 'Koi baat nahi! 😊 Aur kuch puchna hai to bataiye.',
-            'shukriya': 'Welcome hai! 🌟 College ke baare mein aur kuch jaanna hai?'
-        };
+   <script>
+    const groqApiKey = "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"; // ✅ Replace with your key
 
-        function normalizeQuery(query) {
-            return query.toLowerCase().trim().replace(/[?!.]/g, '');
+    // ✅ Hardcoded Knowledge Base (RAG-like)
+    const collegeKnowledgeBase = `
+EXAM & ACADEMIC INFORMATION:
+- Exams start from 29 September 2025
+- Academic calendar: January-May (even semester), July-December (odd semester)
+- Mid-term exams: around 8th week of semester
+- Final exams: last two weeks of semester
+- Exam centre: HMR COLLEGE BAKOLI
+- Results announced 30-45 days after last exam
+
+COLLEGE TIMINGS:
+- College hours: 9:30 AM to 5:00 PM (Mon-Fri)
+- Office working hours: 9:00 AM to 5:00 PM
+
+FEES & PAYMENTS:
+- Tuition due first month of semester
+- Late fee: 100-500 INR
+- Payment modes: Online banking, UPI, cards, cash
+- Installments allowed with approval
+
+LIBRARY:
+- Hours: 9:00 AM - 8:00 PM
+- Issue 3 books for 14 days
+- Late fine: ₹5/day/book
+- Renew online
+
+ATTENDANCE:
+- Minimum: 75%
+- Below 75% needs special permission
+- Check attendance on student portal
+
+HOSTEL:
+- Apply online or hostel office
+- Entry time: 9:30 PM, exit after 6 AM with approval
+- Weekly mess menu on notice board
+- Hostel fee payable online
+
+SCHOLARSHIPS:
+- Merit & need based available
+- Apply via National Scholarship Portal
+
+CONTACTS:
+- IT support: ithelpdesk@college.edu
+- Finance: finance@college.edu
+- Anti-ragging: 1800-180-5522
+`;
+
+    const systemPrompt = `
+You are "College Sampark" – a strict but helpful AI campus assistant.
+RULES:
+- Use the provided knowledge base to answer all questions.
+- If a question is unrelated to college (politics, random jokes, news), say: 
+  "⚠️ Sorry, I can only answer college-related questions."
+- Always keep answers short and precise (max 3 sentences).
+- If info not in knowledge base, politely say you don't have that info and suggest visiting bpit.com or contact IT support.
+- Answer in the same language as user (English, Hindi, Hinglish, Marathi).
+`;
+
+    async function getAIResponse(userMessage) {
+        try {
+            const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${groqApiKey}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    model: "llama-3.1-8b-instant",
+                    messages: [
+                        { role: "system", content: systemPrompt },
+                        { role: "system", content: `KNOWLEDGE BASE:\n${collegeKnowledgeBase}` },
+                        { role: "user", content: userMessage }
+                    ],
+                    max_tokens: 400,
+                    temperature: 0
+                })
+            });
+
+            const data = await response.json();
+            return data.choices[0].message.content;
+        } catch (error) {
+            console.error("API Error:", error);
+            return "⚠️ Could not connect to AI. Please try again later.";
         }
+    }
 
-        function findBestMatch(query) {
-            const normalized = normalizeQuery(query);
-            
-            // Exact match
-            if (responses[normalized]) {
-                return responses[normalized];
-            }
-            
-            // Partial match
-            for (let key in responses) {
-                if (normalized.includes(key) || key.includes(normalized)) {
-                    return responses[key];
-                }
-            }
-            
-            return "I'm still learning! 🤔 Please try asking about exam dates, college timing, library hours, or fees deadline.";
-        }
+    function addMessage(content, isUser = false) {
+        const messagesContainer = document.getElementById('chatMessages');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+        const bubbleDiv = document.createElement('div');
+        bubbleDiv.className = 'message-bubble';
+        bubbleDiv.innerHTML = content.replace(/\n/g, '<br>');
+        messageDiv.appendChild(bubbleDiv);
+        messagesContainer.appendChild(messageDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
 
-        function addMessage(content, isUser = false) {
-            const messagesContainer = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
-            
-            const bubbleDiv = document.createElement('div');
-            bubbleDiv.className = 'message-bubble';
-            bubbleDiv.textContent = content;
-            
-            messageDiv.appendChild(bubbleDiv);
-            messagesContainer.appendChild(messageDiv);
-            
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
+    function showLoader() {
+        document.getElementById('loader').style.display = 'block';
+        document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+    }
 
-        function showLoader() {
-            const loader = document.getElementById('loader');
-            const messagesContainer = document.getElementById('chatMessages');
-            loader.style.display = 'block';
-            messagesContainer.appendChild(loader);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
+    function hideLoader() {
+        document.getElementById('loader').style.display = 'none';
+    }
 
-        function hideLoader() {
-            const loader = document.getElementById('loader');
-            loader.style.display = 'none';
-        }
+    async function sendMessage(message) {
+        const input = document.getElementById('chatInput');
+        const sendButton = document.getElementById('sendButton');
+        if (!message) message = input.value.trim();
+        if (message === '') return;
+        addMessage(message, true);
+        input.value = '';
+        sendButton.disabled = true;
+        showLoader();
 
-        function sendMessage(message) {
-            const input = document.getElementById('chatInput');
-            const sendButton = document.getElementById('sendButton');
-            
-            if (!message) {
-                message = input.value.trim();
-            }
-            
-            if (message === '') return;
-            
-            // Add user message
-            addMessage(message, true);
-            
-            // Clear input and disable button
-            input.value = '';
-            sendButton.disabled = true;
-            
-            // Show loader
-            showLoader();
-            
-            // Simulate processing delay
-            setTimeout(() => {
-                hideLoader();
-                const response = findBestMatch(message);
-                addMessage(response, false);
-                sendButton.disabled = false;
-                input.focus();
-            }, Math.random() * 2000 + 1500); // Random delay between 1.5-3.5 seconds
-        }
+        const response = await getAIResponse(message);
+        hideLoader();
+        addMessage(response, false);
+        sendButton.disabled = false;
+        input.focus();
+    }
 
-        function sendMessageFromInput() {
+    function sendMessageFromInput() {
+        sendMessage();
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
             sendMessage();
         }
+    }
 
-        function handleKeyPress(event) {
-            if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault();
-                sendMessage();
-            }
-        }
+    document.getElementById('chatInput').addEventListener('input', function () {
+        this.style.height = 'auto';
+        this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+    });
+</script>
 
-        // Auto-resize textarea
-        document.getElementById('chatInput').addEventListener('input', function() {
-            this.style.height = 'auto';
-            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
-        });
-
-        // Focus on input when page loads
-        window.addEventListener('load', function() {
-            document.getElementById('chatInput').focus();
-        });
-    </script>
 </body>
+
 </html>
