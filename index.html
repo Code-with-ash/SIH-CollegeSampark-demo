@@ -333,10 +333,10 @@ CONTACTS:
 - Anti-ragging: 1800-180-5522
 
 HOD :
-- Computer Engineering: Professor Achal Kausik, HOD
-- Electrical Engineering: Prof. Peeyush Pant
-- Electronics Engineering: Prof. Rajiv Sharma
-- Information Technology: MANOJ KUMAR GUPTA
+- Computer Engineering(CSE): Professor Achal Kausik, HOD
+- Electrical Engineering(EEE): Prof. Peeyush Pant
+- Electronics Engineering(ECE): Prof. Rajiv Sharma
+- Information Technology(IT): MANOJ KUMAR GUPTA
 TEACHERS:
 - Manufacturing Process(ECE 1st Year): Prof. Pardeep Kumar
 `;
@@ -363,7 +363,7 @@ YOU MUST FOLLOW THESE RULES STRICTLY.
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    model: "llama-3.1-8b-instant",
+                    model: "openai/gpt-oss-20b",
                     messages: [
                         { role: "system", content: systemPrompt },
                         { role: "system", content: `KNOWLEDGE BASE:\n${collegeKnowledgeBase}` },
